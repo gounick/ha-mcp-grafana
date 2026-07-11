@@ -8,8 +8,8 @@ FROM grafana/mcp-grafana:${MCP_GRAFANA_VERSION} AS mcp-grafana-src
 # Final image based on the Home Assistant App base image (bashio, s6).
 FROM ghcr.io/hassio-addons/base:15.0.4
 
-# The upstream image exposes the binary at /mcp-grafana.
-COPY --from=mcp-grafana-src /mcp-grafana /usr/bin/mcp-grafana
+# The upstream image exposes the binary at /app/mcp-grafana.
+COPY --from=mcp-grafana-src /app/mcp-grafana /usr/bin/mcp-grafana
 RUN chmod +x /usr/bin/mcp-grafana
 
 COPY run.sh /
