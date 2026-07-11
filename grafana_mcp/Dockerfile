@@ -2,7 +2,7 @@
 
 # Upstream image containing the official mcp-grafana binary.
 # Pin an explicit version instead of "latest" for reproducible builds.
-ARG MCP_GRAFANA_VERSION="v0.17.1"
+ARG MCP_GRAFANA_VERSION="0.17.1"
 FROM grafana/mcp-grafana:${MCP_GRAFANA_VERSION} AS mcp-grafana-src
 
 # Final image based on the Home Assistant App base image (bashio, s6).
