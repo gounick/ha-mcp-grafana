@@ -71,6 +71,7 @@ jobs:
         with:
           arch: ${{ matrix.arch }}
           container-registry-password: ${{ secrets.GITHUB_TOKEN }}
+          context: grafana_mcp
           image: ${{ matrix.image }}
           image-tags: |
             ${{ needs.init.outputs.version }}
