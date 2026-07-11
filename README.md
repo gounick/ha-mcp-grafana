@@ -20,13 +20,13 @@ permettre à un client IA de dialoguer avec une instance Grafana.
 Cette App est publiée via un **dépôt personnalisé** Home Assistant. Pour
 l'installer :
 
-[![Open your Home Assistant instance and show the add add-on repository dialog with a specific repository URL pre-filled.](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2FGounick%2Fha-mcp-grafana)
+[![Open your Home Assistant instance and show the add add-on repository dialog with a specific repository URL pre-filled.](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fgounick%2Fha-mcp-grafana)
 
 Ou dans la boutique d'add-ons Home Assistant, ajoutez manuellement ce dépôt
 avec l'URL suivante :
 
 ```text
-https://github.com/Gounick/ha-mcp-grafana
+https://github.com/gounick/ha-mcp-grafana
 ```
 
 1. Ouvrez Home Assistant : **Paramètres → Add-ons/Apps → Boutique des Apps**
@@ -69,7 +69,7 @@ https://github.com/Gounick/ha-mcp-grafana
 Les images sont construites et publiées automatiquement sur **GitHub Container
 Registry** (`ghcr.io`) par le workflow `.github/workflows/builder.yaml` :
 
-- Sur chaque `release` publiée, une image multi-arch `ghcr.io/Gounick/ha-mcp-grafana:<tag>`
+- Sur chaque `release` publiée, une image multi-arch `ghcr.io/gounick/ha-mcp-grafana:<tag>`
   est publiée.
 - Sur chaque push sur `main`, une image `edge` est publiée (utile pour les tests).
 - `config.yaml` pointe directement vers le manifest multi-arch sur GHCR.
@@ -96,7 +96,7 @@ Pour publier une version stable :
 4. Le workflow `.github/workflows/release.yaml` crée automatiquement la release
    GitHub en extrayant la section correspondante du `CHANGELOG.md`.
 5. Le workflow `builder.yaml` publie alors
-   `ghcr.io/Gounick/ha-mcp-grafana:1.0.1`.
+   `ghcr.io/gounick/ha-mcp-grafana:1.0.1`.
 
 ### Mise à jour automatique des images
 
