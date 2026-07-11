@@ -1,0 +1,67 @@
+name: "Grafana MCP Server"
+version: "1.0.1"
+slug: "grafana_mcp"
+description: "Serveur MCP (Model Context Protocol) pour piloter une instance Grafana depuis un client IA (Claude, etc.)"
+url: "https://github.com/grafana/mcp-grafana"
+arch:
+  - amd64
+  - aarch64
+init: false
+startup: services
+boot: auto
+hassio_api: false
+homeassistant_api: false
+host_network: false
+
+# Port exposé par le serveur MCP (mode Streamable HTTP ou SSE).
+# Le port interne du binaire est toujours 8000 ; HA le remappe si besoin.
+ports:
+  8000/tcp: 8000
+ports_description:
+  8000/tcp: "Endpoint MCP (Streamable HTTP: /, SSE: /sse)"
+
+options:
+  transport_mode: "streamable-http"
+  address: "0.0.0.0:8000"
+  grafana_url: "http://homeassistant.local:3000"
+  grafana_service_account_token: ""
+  grafana_username: ""
+  grafana_password: ""
+  grafana_org_id: ""
+  grafana_extra_headers: ""
+  enabled_tools: ""
+  allowed_hosts: "*"
+  allowed_origins: ""
+  disable_write: false
+  disable_admin: true
+  log_level: "info"
+  debug: false
+  metrics: false
+  session_idle_timeout_minutes: 30
+
+schema:
+  transport_mode: "list(streamable-http|sse)"
+  address: "str"
+  grafana_url: "url"
+  grafana_service_account_token: "password?"
+  grafana_username: "str?"
+  grafana_password: "password?"
+  grafana_org_id: "str?"
+  grafana_extra_headers: "str?"
+  enabled_tools: "str?"
+  allowed_hosts: "str"
+  allowed_origins: "str?"
+  disable_write: "bool"
+  disable_admin: "bool"
+  log_level: "list(debug|info|warn|error)"
+  debug: "bool"
+  metrics: "bool"
+  session_idle_timeout_minutes: "int(0,1440)"
+
+image: "ghcr.io/gounick/ha-mcp-grafana"
+
+healthcheck:
+  test: ["CMD", "wget", "-qO-", "http://localhost:8000/healthz"]
+  interval: 30s
+  timeout: 10s
+  retries: 3

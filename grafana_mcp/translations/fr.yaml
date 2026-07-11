@@ -1,0 +1,52 @@
+configuration:
+  transport_mode:
+    name: "Mode de transport"
+    description: "Streamable HTTP (recommandé, multi-clients) ou SSE (legacy)."
+  address:
+    name: "Adresse d'écoute"
+    description: "Host:port interne du serveur MCP (laisser 0.0.0.0:8000)."
+  grafana_url:
+    name: "URL Grafana"
+    description: "URL de l'instance Grafana à piloter (ex: http://homeassistant.local:3000 ou une URL Grafana Cloud)."
+  grafana_service_account_token:
+    name: "Token de compte de service"
+    description: "Token du service account Grafana (méthode d'authentification recommandée)."
+  grafana_username:
+    name: "Utilisateur Grafana"
+    description: "Alternative à l'authentification par token."
+  grafana_password:
+    name: "Mot de passe Grafana"
+    description: "Utilisé avec l'utilisateur Grafana ci-dessus."
+  grafana_org_id:
+    name: "ID d'organisation Grafana"
+    description: "Optionnel, pour les instances multi-organisations."
+  grafana_extra_headers:
+    name: "En-têtes HTTP additionnels"
+    description: 'Objet JSON, ex: {"X-Custom-Header": "valeur"}.'
+  enabled_tools:
+    name: "Catégories d'outils activées"
+    description: "Liste séparée par des virgules (ex: search,dashboard,prometheus). Laisser vide pour les valeurs par défaut."
+  allowed_hosts:
+    name: "Hôtes autorisés (Host)"
+    description: "Allowlist des en-têtes Host acceptés par le serveur MCP. Défaut '*' pour tous les hôtes."
+  allowed_origins:
+    name: "Origines autorisées (Origin)"
+    description: "Allowlist des en-têtes Origin acceptés. Laisser vide pour refuser les requêtes avec Origin."
+  disable_write:
+    name: "Mode lecture seule"
+    description: "Désactive toutes les opérations d'écriture sur Grafana."
+  disable_admin:
+    name: "Désactiver les outils Admin"
+    description: "Recommandé pour un usage IA standard."
+  log_level:
+    name: "Niveau de log"
+    description: "Verbosité des logs du serveur MCP."
+  debug:
+    name: "Mode debug"
+    description: "Active le logging détaillé des requêtes HTTP vers Grafana."
+  metrics:
+    name: "Métriques Prometheus"
+    description: "Expose /metrics sur le serveur (Streamable HTTP / SSE uniquement)."
+  session_idle_timeout_minutes:
+    name: "Timeout de session (minutes)"
+    description: "Durée d'inactivité avant la fermeture d'une session MCP (0 = désactivé)."

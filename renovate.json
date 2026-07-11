@@ -1,0 +1,43 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "schedule": ["before 9am on monday"],
+  "timezone": "Europe/Paris",
+  "automerge": true,
+  "automergeType": "pr",
+  "platformAutomerge": true,
+  "prHourlyLimit": 2,
+  "rebaseWhen": "conflicted",
+  "major": {
+    "automerge": false
+  },
+  "packageRules": [
+    {
+      "description": "Group Home Assistant base image updates",
+      "matchPackageNames": ["ghcr.io/hassio-addons/base"],
+      "groupName": "home-assistant-base",
+      "automerge": true
+    },
+    {
+      "description": "Group Grafana MCP server updates",
+      "matchPackageNames": ["grafana/mcp-grafana"],
+      "groupName": "mcp-grafana",
+      "automerge": true
+    },
+    {
+      "description": "Group GitHub Actions updates",
+      "matchManagers": ["github-actions"],
+      "groupName": "github-actions",
+      "automerge": true
+    }
+  ],
+  "regexManagers": [
+    {
+      "description": "Update Grafana MCP server version in Dockerfile",
+      "fileMatch": ["(^|/)Dockerfile$"],
+      "matchStrings": ["ARG MCP_GRAFANA_VERSION=\"(?<currentValue>[^\"]+)\""],
+      "depNameTemplate": "grafana/mcp-grafana",
+      "datasourceTemplate": "docker"
+    }
+  ]
+}
